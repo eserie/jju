@@ -59,7 +59,8 @@ def eigh_partial_rev(grad_w, grad_v, w, v, a, x0, outer_impl=jnp.outer):
                 grad_vi, wi, vi, x0i = operand
 
                 # Amat = (a - wi * jnp.eye(m, dtype=a.dtype)).T
-                Amat = lambda x: (a(x.conj())).conj() - wi * x
+                def Amat(x):
+                    return (a(x.conj())).conj() - wi * x
 
                 # Projection operator on space orthogonal to v
                 P = projector(vi)

@@ -79,7 +79,7 @@ class _BasicState(NamedTuple):
     X: jnp.ndarray  # [m, n]
     R: jnp.ndarray  # [m, n]
     P: jnp.ndarray  # [m, n]
-    rerr: jnp.ndarray  #  error
+    rerr: jnp.ndarray  # error
     mask: jnp.ndarray  # mask of innactive directions
 
 

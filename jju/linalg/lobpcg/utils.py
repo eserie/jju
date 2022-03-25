@@ -22,7 +22,7 @@ def compute_residual(
 
 
 @jax.jit
-def approx_matrix_norm2(A: Optional[ArrayOrFun], ohm: jnp.ndarray):
+def approx_matrix_norm2(A: ArrayOrFun, ohm: jnp.ndarray):
     """
     Approximation of matrix 2-norm of `A`.
 
@@ -144,13 +144,14 @@ def orthonormalize(V, BV):
     BV = BV / norm
     VBV = V.T @ BV
     if False:
-        VBV = jax.scipy.linalg.cholesky(VBV, overwrite_a=True)
-        VBV = jax.scipy.linalg.inv(VBV, overwrite_a=True)
-        V = V @ VBV
-        if B is not None:
-            BV = BV @ VBV
-        else:
-            BV = None
+        ...
+        # VBV = jax.scipy.linalg.cholesky(VBV, overwrite_a=True)
+        # VBV = jax.scipy.linalg.inv(VBV, overwrite_a=True)
+        # V = V @ VBV
+        # if B is not None:
+        #     BV = BV @ VBV
+        # else:
+        #     BV = None
     else:
         gram_VBV = jax.scipy.linalg.cho_factor(VBV)
         V = (jax.scipy.linalg.cho_solve(gram_VBV, V.T)).T
