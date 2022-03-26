@@ -53,7 +53,6 @@ def rayleigh_ritz_scipy(
 
 
 def generate_wishart(N=1000, T=1100):
-    r = N / T
     X = np.random.randn(T, N)
     W = X.T @ X / T
     return W, X

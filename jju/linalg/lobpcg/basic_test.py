@@ -27,7 +27,10 @@ config.update("jax_enable_x64", True)
 def eigh_general(A, B, largest: bool):
     if B is None:
         w, v = jnp.linalg.eigh(A)
-        B = lambda x: x
+
+        def B(x):
+            return x
+
     else:
         w, v = jnp.linalg.eig(jnp.linalg.solve(B, A))
         w = w.real
